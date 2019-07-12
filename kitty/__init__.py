@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from kitty import settings
+from restplus_enhancement.namespace import Namespace
+from sqlalchemy_enhancement.base_query import BaseQuery
 
 
 from flask_restplus import Api
@@ -28,3 +30,12 @@ def create_app(testing_config=None):
 
     return app
 
+
+app = create_app()
+kitty_api = Namespace("BookKeeper", description='book keeper restful api', path='/', validate=True)
+
+from kitty import views, errorhandlers, errors
+
+
+api.add_namespace(kitty_api)
+api.init_app(app)
