@@ -35,6 +35,7 @@ app = create_app()
 kitty_api = Namespace("BookKeeper", description='book keeper restful api', path='/', validate=True)
 
 from kitty import views, errorhandlers, errors
+from kitty import models
 
 
 api.add_namespace(kitty_api)
