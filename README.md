@@ -2,7 +2,7 @@
 flask + mysql RESTful server book keeper
 
 **v-0.0.1**:
-- [] -!!- build project
+- [x] -!!- build project
 - [] -!!- func:
 	- [] -!!- add a new transaction
 	- [] -!!- delete a transaction
