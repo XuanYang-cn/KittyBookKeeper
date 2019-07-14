@@ -11,7 +11,7 @@ class Classification(BaseModel):
 
     __tablename__ = 'transaction_classification'
 
-    name = db.Column(db.String(20))
+    name = db.Column(db.String(20), nullable=False, unique=True)
 
 
 class Transaction(BaseModel):
