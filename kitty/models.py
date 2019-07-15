@@ -20,6 +20,7 @@ class Transaction(BaseModel):
 
     expense = db.Column(db.Numeric(10, 2), nullable=False)
     classification_id = db.Column(db.Integer, nullable=False, index=True)
+    description = db.Column(db.String(20), nullable=False)
 
     classification = db.relationship(
         Classification,
