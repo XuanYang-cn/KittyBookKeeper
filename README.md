@@ -10,10 +10,9 @@ flask + mysql RESTful server book keeper
 	- [  ] -!- search some transactions by time/time_ranges/category/...
 	- [  ] -!!- update a transaction
 - [  ] -!!- CRUD `classification`:
-	- [  ] -!!- add a classification
+	- [ x ] -!!- add a classification
 	- [  ] -!!- update a classification
 	- [  ] -!!- delete a classification
-	- [  ] -!!- search a classification
 	- [  ] -!!- search some classifications
 - [  ] -!- tests
 - [  ] -!- error handler
