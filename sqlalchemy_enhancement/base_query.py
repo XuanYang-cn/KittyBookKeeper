@@ -15,5 +15,8 @@ class BaseQuery(CachingQuery):
     def slice_from_args(self):
         return self.slice(g.args.start, g.args.end)
 
+    def page(self):
+        return self.offset(g.args['offset']).limit(g.args['limit'])
+
     def discard(self):
         return self.update({'status': 1})

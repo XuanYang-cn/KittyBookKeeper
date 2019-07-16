@@ -6,6 +6,8 @@ from kitty.schema import (
         EmptySchema,
         GetCategoryResponseSchema,
         CategoryRequestSchema,
+        CastegoryResponseSchema,
+        paginate_parser,
 )
 from restplus_enhancement.schema_model import SchemaResponse
 import logging
@@ -21,3 +23,14 @@ class Category(Resource):
         new_category = Classification()
         new_category.new(**g.json_input_data)
         return SchemaResponse(new_category)
+
+    @api.expect(paginate_parser(), validate=True)
+    @api.response(200, 'sucess', CastegoryResponseSchema, validate=True)
+    @api.response(400, 'fail', EmptySchema, validate=False)
+    def get(self):
+        """Get categorys"""
+        gorys = Classification.query.page().all()
+        logger.error(gorys)
+        return SchemaResponse(result={
+            'category': gorys
+            })

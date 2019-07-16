@@ -17,6 +17,9 @@ class Classification(BaseModel):
     def __repr__(self):
         return f"<Classification: {self.name}>"
 
+    def __str__(self):
+        return f"{self.name}"
+
     def new(self, name):
         item = Classification.query.filter_by(name=name).first()
 

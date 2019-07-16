@@ -13,7 +13,7 @@ flask + mysql RESTful server book keeper
 	- [ x ] -!!- add a classification
 	- [  ] -!!- update a classification
 	- [  ] -!!- delete a classification
-	- [  ] -!!- search some classifications
+	- [ x ] -!!- search some classifications
 - [  ] -!- tests
 - [  ] -!- error handler
 - [  ] -!- build a docker image
