@@ -24,4 +24,5 @@ flask + mysql RESTful server book keeper
 **v-0.0.2**:
 - [  ] -!!!- migrate READEME to CHANGELOG
 - [  ] -!!- add a individual service -- Admin, managing `classification`
+- [  ] -!!!- Sentry intergration
 
