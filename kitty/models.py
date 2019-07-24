@@ -1,5 +1,6 @@
 import logging
 import datetime
+from decimal import Decemal
 
 from kitty import db, settings
 from kitty.base import BaseModel
@@ -30,6 +31,15 @@ class Classification(BaseModel):
         self.save()
 
 
+def parse_date(year, month, day):
+    # TODO may raisee Exceptions
+    today = datetime.date.today()
+    expense_year = year or today.year
+    expense_month = month or today.month
+    expense_day = day or today.day
+
+    return datetime.date(expense_year, expense_month, expense_day)
+
 class Transaction(BaseModel):
 
     __tablename__ = 'transaction'
@@ -44,3 +54,16 @@ class Transaction(BaseModel):
         primaryjoin='and_(foreign(Transaction.classification_id) == Classification.id,\
                             Classification.status == 0)'
     )
+
+    def __repr__(self):
+        return f"<Transaction: expense:{self.expense} date: {self.spend_on}>"
+
+    @classmethod
+    def new(cls, category, expense, *, year=None, month=None, day=None, description=None):
+        spend_on = parse_date(year, month, day)
+        category = Classification.filter_by(name=category).first()
+        expense = Decemal(expense)
+
+        if category:
+            trans = Transaction(expense=)
+        pass

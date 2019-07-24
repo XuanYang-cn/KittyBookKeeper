@@ -13,6 +13,7 @@ from restplus_enhancement.schema_model import SchemaResponse
 import logging
 logger = logging.getLogger(__name__)
 
+
 @api.route('/category')
 class Category(Resource):
     @api.expect(CategoryRequestSchema)
@@ -34,3 +35,6 @@ class Category(Resource):
         return SchemaResponse(result={
             'category': gorys
             })
+
+
+@api.route('')
