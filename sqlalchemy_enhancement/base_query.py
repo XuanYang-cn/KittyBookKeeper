@@ -16,7 +16,9 @@ class BaseQuery(CachingQuery):
         return self.slice(g.args.start, g.args.end)
 
     def page(self):
-        return self.offset(g.args['offset']).limit(g.args['limit'])
+        limit = g.args['limit']
+        limit = 20 if limit > 20 else limit
+        return self.offset(g.args['offset']).limit(limit)
 
     def discard(self):
         return self.update({'status': 1})

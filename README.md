@@ -5,7 +5,7 @@ flask + mysql book keeper RESTful api server
 - [x] -!!- build project
 - [  ] -!!- CRUD `transaction`:
 	- [ x ] -!!- add a new transaction
-	- [  ] -!!- delete a transaction
+	- [  ] -!!- delete a transaction by spend_on time, classification and expense
 	- [  ] -!- search some transactions by time/time_ranges/category/...
 	- [  ] -!!- update a transaction
 - [ x ] -!!- CRUD `classification`:
