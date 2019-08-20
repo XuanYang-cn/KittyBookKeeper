@@ -45,4 +45,4 @@ class TransactionRoute(Resource):
     @api.response(400, 'fail', EmptySchema, validate=False)
     def post(self):
         Transaction.new(**g.json_input_data)
-        return
+        return SchemaResponse()
