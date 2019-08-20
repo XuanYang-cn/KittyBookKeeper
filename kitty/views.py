@@ -1,12 +1,13 @@
 from flask import g
 from kitty import kitty_api as api
-from kitty.models import Classification
+from kitty.models import Classification, Transaction
 from flask_restplus import Resource
 from kitty.schema import (
         EmptySchema,
         GetCategoryResponseSchema,
         CategoryRequestSchema,
         CastegoryResponseSchema,
+        AddTransactionRequestSchema,
         paginate_parser,
 )
 from restplus_enhancement.schema_model import SchemaResponse
@@ -37,4 +38,11 @@ class Category(Resource):
             })
 
 
-@api.route('')
+@api.route('/transaction')
+class TransactionRoute(Resource):
+    @api.expect(AddTransactionRequestSchema)
+    @api.response(200, 'success', EmptySchema, validate=True)
+    @api.response(400, 'fail', EmptySchema, validate=False)
+    def post(self):
+        Transaction.new(**g.json_input_data)
+        return

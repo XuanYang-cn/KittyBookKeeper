@@ -28,3 +28,12 @@ CategoryRequestSchema = api.new_schema(name='CategoryRequestSchema', fields={
 CastegoryResponseSchema = api.new_schema(name='CastegoryResponseSchema', fields={
     'category': fields.List(fields.String(example='income'))
     })
+
+AddTransactionRequestSchema = api.new_schema(name='AddNewTransactionSchema', fields={
+    'year': fields.Integer(example=2019, description='Year when the transaction happend, default to this year', required=False),
+    'month': fields.Integer(example=12, description='Month when the transaction happend, default to this month', required=False),
+    'day': fields.Integer(example=1, description='Day when the transaction happend, default to today', required=False),
+    'expense': fields.String(example='123.50', description='Money of this transaction', required=True),
+    'category': fields.String(example='income', description='Classification of this transaction', required=True),
+    'description': fields.String(example='Salary', description='Brief description about this transaction', required=True)
+    })

@@ -1,10 +1,13 @@
 import logging
 import datetime
-from decimal import Decemal
+from decimal import Decimal
 
 from kitty import db, settings
 from kitty.base import BaseModel
-from kitty.errors import CategoryAlreadyExistsError
+from kitty.errors import (
+    CategoryAlreadyExistsError,
+    CategoryNotExistsError,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +34,8 @@ class Classification(BaseModel):
         self.save()
 
 
-def parse_date(year, month, day):
+def parse_date(year=None, month=None, day=None):
+    # TODO test
     # TODO may raisee Exceptions
     today = datetime.date.today()
     expense_year = year or today.year
@@ -39,6 +43,7 @@ def parse_date(year, month, day):
     expense_day = day or today.day
 
     return datetime.date(expense_year, expense_month, expense_day)
+
 
 class Transaction(BaseModel):
 
@@ -59,11 +64,17 @@ class Transaction(BaseModel):
         return f"<Transaction: expense:{self.expense} date: {self.spend_on}>"
 
     @classmethod
-    def new(cls, category, expense, *, year=None, month=None, day=None, description=None):
+    def new(cls, category, expense, description, *, year=None, month=None, day=None):
+        '''
+        expense: str
+        '''
         spend_on = parse_date(year, month, day)
-        category = Classification.filter_by(name=category).first()
-        expense = Decemal(expense)
+        category = Classification.query.filter_by(name=category).first()
+        expense = Decimal(expense)
 
         if category:
-            trans = Transaction(expense=)
-        pass
+            trans = Transaction(expense=expense, classification=category,
+                                spend_on=spend_on, description=description)
+            trans.save()
+        else:
+            raise CategoryNotExistsError('Category not exists!')

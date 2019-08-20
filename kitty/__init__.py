@@ -1,4 +1,6 @@
 from flask import Flask
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from kitty import settings
@@ -17,6 +19,12 @@ migrate = Migrate()
 
 
 def create_app(testing_config=None):
+
+    sentry_sdk.init(
+        dsn="https://4ea432b93e0b4ba8a0f76ef4e06aead3@sentry.io/1535661",
+        integrations=[FlaskIntegration()]
+    )
+
     app = Flask(__name__)
     app.url_map.strict_slashes = settings.FLASK_STRICT_SLASHES
 
